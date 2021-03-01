@@ -1,17 +1,17 @@
 {
-   vanilla: {
-      url: test
+   "vanilla": {
+      "url": "test"
    },
-   forge: {
-      url: test
+   "forge": {
+      "url": "test"
    },
-   fabric: {
-      url: test
+   "fabric": {
+      "url": "test"
    },
-   spigot: {
-      url: test
+   "spigot": {
+      "url": "test"
    },
-   paper: {
-      url: https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/505/downloads/paper-1.16.5-505.jar
+   "paper": {
+      "url": "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/505/downloads/paper-1.16.5-505.jar"
    }
 }
