@@ -157,6 +157,7 @@ while test $# -gt 0; do
       cd $DIR
       zip -q -r server backups/$(date +%s).zip
       fancy_message info "Done"
+      exit
       ;;    
     -S|--search)
       source /usr/share/pacstall/scripts/search.sh
@@ -271,7 +272,7 @@ while test $# -gt 0; do
       exit
       ;;
      *)
-      pacstall -h
+      mine -h
       exit 1
       ;;
   esac
