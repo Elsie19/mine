@@ -109,15 +109,20 @@ while test $# -gt 0; do
         ....
         ....
         ;;
-      match2)
+      forge)
         commands
         ....
         ....
         ;;
-      match3)
+      fabric)
         commands
         ....
         ....
+        ;;
+      paper)
+        mkdir /opt/mine-paper || fancy_message error "Could not write to /opt/mine-paper" && exit 1
+        cd /opt/mine-paper
+        wget $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .paper.url)
         ;;
      *)
      esac
