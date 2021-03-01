@@ -135,9 +135,11 @@ while test $# -gt 0; do
         ....
         ;;
       forge)
-        commands
-        ....
-        ....
+        mkdir /opt/mine-forge || fancy_message error "Could not write to /opt/mine-forge" && exit 1
+        cd /opt/mine-forge
+        initmine forge
+        java -jar /opt/mine-forge/server.jar --installServer
+        exit
         ;;
       fabric)
         commands
