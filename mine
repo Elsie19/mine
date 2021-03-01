@@ -73,23 +73,24 @@ On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
 function initmine() {
-    NAME=$1
+    NAME=$2
     DIR=/opt/mine-$NAME
     cd $DIR
     fancy_message info "Making directories"
     mkdir {server,backups}
     cd server
     mine-jar $NAME
+    fancy_message info "Creating startup script"
     touch start.sh
     echo '#!/bin/sh
     cd $(dirname $0)
-    java -jar -server java -Xms1G -Xmx1G server.jar' > start.sh
+    java -jar -server -Xms1G -Xmx1G server.jar' > start.sh
     fancy_message info "You should look here for more optimized flags: https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/"
     fancy_message info "Installing systemd service"
     
 }
 function mine-jar() {
-    JARNAME=$1
+    JARNAME=$2
     wget -q -O server.jar $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .${JARNAME}.url)
     fancy_message info "Downloaded $NAME"
 }
@@ -147,29 +148,16 @@ while test $# -gt 0; do
      *)
      esac
       ;;
-    -Il|--install-local)
-      REPO=$(cat /usr/share/pacstall/repo/pacstallrepo.txt) 
-      INPUT=$2
-      # If input is relative and ends in .pacscript
-      if [[ $INPUT == *".pacscript" ]]; then
-        PACKAGE=${INPUT%.pacscript}
-      else
-        # If input is a full path
-        if [[ $(echo ${INPUT:0:1}) == *\/* ]]; then
-          DIR=$(echo $INPUT | sed 's|\(.*\)/.*|\1|')
-          cd $DIR
-          INPUT=${INPUT%.pacscript}
-          PACKAGE=$(echo $INPUT | sed 's|.*/||')
-        else
-          # If input doesn't end in .pacscript and is relative
-          if [[ $INPUT != *".pacscript" ]]; then
-            PACKAGE=$INPUT
-          fi
-        fi
-      fi
-      source /usr/share/pacstall/scripts/install-local.sh
-      exit
-      ;;
+    -B|--backup)
+      SERVER=$2
+      [ -d /opt/mine-$SERVER ] || fancy_message error "$SERVER not valid" && exit 1
+      DIR=/opt/mine-$SERVER
+      fancy_message info "Stopping server"
+      systemctl stop $SERVER
+      cd $DIR
+      zip -q -r server backups/$(date +%s).zip
+      fancy_message info "Done"
+      ;;    
     -S|--search)
       source /usr/share/pacstall/scripts/search.sh
       ;;
