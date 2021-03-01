@@ -73,7 +73,7 @@ On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
 function initmine() {
-    NAME=$2
+    NAME=$1
     DIR=/opt/mine-$NAME
     cd $DIR
     fancy_message info "Making directories"
@@ -85,18 +85,20 @@ function initmine() {
     fancy_message info "Creating startup script"
     touch start.sh
     echo '#!/bin/sh
-    cd $(dirname $0)
-    java -jar -server -Xms1G -Xmx1G server.jar' > start.sh
+cd $(dirname $0)
+java -jar -server -Xms1G -Xmx1G server.jar nogui' > start.sh
     fancy_message info "You should look here for more optimized flags: ${GREEN}https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/${NC}"
     fancy_message info "Installing systemd service"
-    sudo wget -O $NAME.service -P /etc/systemd/system/ "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
-    fancy_message warn "You will need to edit ${GREEN}/etc/systemd/system/$NAME.service${NC} to add your user in the blank entry"
-    fancy_message info "You should put in $(whoami)"
+    cd /etc/systemd/system
+    sudo wget -q -O $NAME.service "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
+    fancy_message warn "You will need to edit ${GREEN}/etc/systemd/system/$NAME.service${NC}. Add your user in the line that says User="
+    fancy_message info "You should put in ${RED}$(whoami)${NC}"
     exit
 }
 function mine-jar() {
-    JARNAME=$2
-    wget -q -O server.jar $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .${JARNAME}.url)
+    JARNAME=$1
+    # Wgets output of curling release.json and jq'ing the name and url
+    wget -q -O server.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq -r ."$JARNAME".url)
     fancy_message info "Downloaded $NAME"
 }
 function fancy_message() {
@@ -137,7 +139,7 @@ while test $# -gt 0; do
         ;;
       forge)
         sudo mkdir /opt/mine-forge/
-        sudo chmod -R 775 /opt/mine-forge
+        sudo chown -R $USER:$USER /opt/mine-forge
         cd /opt/mine-forge
         initmine forge
         java -jar /opt/mine-forge/server.jar --installServer
@@ -145,25 +147,26 @@ while test $# -gt 0; do
         ;;
       fabric)
         sudo mkdir /opt/mine-fabric/
-        sudo chmod -R 775 /opt/mine-fabric
+        sudo chown -R $USER:$USER /opt/mine-fabric
         cd /opt/mine-fabric
         initmine fabric
         mv server.jar fabric-installer.jar
         java -jar /opt/mine-fabric/fabric-installer.jar server
         echo '#!/bin/sh
         cd $(dirname $0)
-        java -jar -server -Xms1G -Xmx1G fabric-server-launch.jar' > start.sh
+        java -jar -server -Xms1G -Xmx1G fabric-server-launch.jar nogui' > start.sh
         exit
         ;;
       paper)
         sudo mkdir /opt/mine-paper
-        sudo chmod -R 775 /opt/mine-paper
+        sudo chown -R $USER:$USER /opt/mine-paper
         cd /opt/mine-paper
         initmine paper
+        exit
         ;;
       spigot)
         sudo mkdir /opt/mine-spigot
-        sudo chmod -R 775 /opt/mine-spigot
+        sudo chown -R $USER:$USER /opt/mine-spigot
         cd /opt/mine-spigot
         initmine spigot
         mv server.jar buildtools.jar

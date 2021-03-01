@@ -1,6 +1,7 @@
 {
    "vanilla": {
-      "url": "test"
+      "url": "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar",
+      "version": "1.16.5"
    },
    "forge": {
       "url": "https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.16.5-36.0.42/forge-1.16.5-36.0.42-installer.jar",
