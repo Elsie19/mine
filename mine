@@ -81,9 +81,7 @@ function initmine() {
     cd server
     mine-jar $NAME
     fancy_message info "Accepting EULA"
-    echo '#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
-#Wed Jul 24 13:56:00 CEST 2019
-eula=true' > eula.txt
+    echo 'eula=true' > eula.txt
     fancy_message info "Creating startup script"
     touch start.sh
     echo '#!/bin/sh
@@ -142,9 +140,12 @@ while test $# -gt 0; do
         exit
         ;;
       fabric)
-        commands
-        ....
-        ....
+        mkdir /opt/mine-fabric || fancy_message error "Could not write to /opt/mine-fabric" && exit 1
+        cd /opt/mine-fabric
+        initmine fabric
+        mv server.jar fabric-installer.jar
+        java -jar /opt/mine-fabric/fabric-installer.jar server
+        exit
         ;;
       paper)
         mkdir /opt/mine-paper || fancy_message error "Could not write to /opt/mine-paper" && exit 1
