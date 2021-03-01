@@ -1,8 +1,11 @@
 {
-   "vanilla": {
-      "url": "test"
+   vanilla: {
+      url: test
    },
-   "forge": {
-      "url": "test"
+   forge: {
+      url: test
+   },
+   fabric: {
+      url: test
    }
 }
