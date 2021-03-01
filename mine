@@ -90,7 +90,7 @@ function initmine() {
 }
 function mine-jar() {
     JARNAME=$1
-    wget -q -O server.jar $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .$(JARNAME).url)
+    wget -q -O server.jar $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .${JARNAME}.url)
     fancy_message info "Downloaded $NAME"
 }
 function fancy_message() {
