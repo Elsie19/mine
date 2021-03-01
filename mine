@@ -145,6 +145,9 @@ while test $# -gt 0; do
         initmine fabric
         mv server.jar fabric-installer.jar
         java -jar /opt/mine-fabric/fabric-installer.jar server
+        echo '#!/bin/sh
+        cd $(dirname $0)
+        java -jar -server -Xms1G -Xmx1G fabric-server-launch.jar' > start.sh
         exit
         ;;
       paper)
