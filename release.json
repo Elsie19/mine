@@ -7,5 +7,11 @@
    },
    fabric: {
       url: test
+   },
+   spigot: {
+      url: test
+   },
+   paper: {
+      url: test
    }
 }
