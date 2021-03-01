@@ -9,3 +9,9 @@ Only works on Linux distro's with systemd
 ## Features
 * Uses a configuration that is easily accesible by the user so you don't have to edit the service files in root
 * Uses the screen program to enter your servers console from anywhere. Run `screen -dmS server` to enter and <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit. Make sure you change server to whatever your running (i.e `screen -dmS paper` if you are running a paper server or just run `screen -r` if you are running one server)
+
+
+
+## Installation
+Run curl -s -L https://git.io/Jthn5 > /usr/bin/mine
+Make sure you have wget, curl, jq, and java installed
