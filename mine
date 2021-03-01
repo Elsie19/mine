@@ -155,6 +155,15 @@ while test $# -gt 0; do
         cd /opt/mine-paper
         initmine paper
         ;;
+      spigot)
+        mkdir /opt/mine-spigot || fancy_message error "Could not write to /opt/mine-spigot" && exit 1
+        cd /opt/mine-spigot
+        initmine spigot
+        mv server.jar buildtools.jar
+        java -jar buildtools.jar --rev latest
+        mv spigot-*.jar server.jar
+        rm -rf {apache-maven-3.6.0,BuildData,Bukkit,CraftBukkit,Spigot,work}
+        ;;
      *)
      esac
       ;;
