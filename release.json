@@ -6,7 +6,7 @@
       "url": "https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.16.5-36.0.42/forge-1.16.5-36.0.42-installer.jar"
    },
    "fabric": {
-      "url": "test"
+      "url": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.6.1.51/fabric-installer-0.6.1.51.jar"
    },
    "spigot": {
       "url": "test"
