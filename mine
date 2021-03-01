@@ -80,6 +80,10 @@ function initmine() {
     mkdir {server,backups}
     cd server
     mine-jar $NAME
+    fancy_message info "Accepting EULA"
+    echo '#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
+#Wed Jul 24 13:56:00 CEST 2019
+eula=true' > eula.txt
     fancy_message info "Creating startup script"
     touch start.sh
     echo '#!/bin/sh
@@ -165,12 +169,16 @@ while test $# -gt 0; do
       BACKUP=$3
       printf "This will overwrite the contents of ${GREEN}/opt/mine-$SERVER/server${NC}. Continue?"
       read -r ans
-      if [[ $ans -ne "y" ]]; then
+      if [[ $ans == "n" ]]; then
         exit 1
       else
-        rm -rf /opt/mine-$SERVER/server
-        mv /opt/mine-$SERVER/backups/$BACKUP.zip /opt/mine-$SERVER/server
-        unzip /opt/mine-$SERVER/server/$BACKUP.zip
+        cd /opt/mine-$SERVER/server/
+        rm -rf /opt/mine-$SERVER/server/
+        mv /opt/mine-$SERVER/backups/$BACKUP.zip /opt/mine-$SERVER/server/
+        unzip /opt/mine-$SERVER/server/$BACKUP.zip /opt/mine-$SERVER/server/
+        fancy_message info "Backed up server to $BACKUP"
+        exit
+      fi
       ;;
     -R|--remove)
       PACKAGE=$2
