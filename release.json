@@ -12,6 +12,6 @@
       url: test
    },
    paper: {
-      url: test
+      url: https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/505/downloads/paper-1.16.5-505.jar
    }
 }
