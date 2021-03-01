@@ -89,7 +89,10 @@ function initmine() {
     java -jar -server -Xms1G -Xmx1G server.jar' > start.sh
     fancy_message info "You should look here for more optimized flags: ${GREEN}https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/${NC}"
     fancy_message info "Installing systemd service"
-    
+    sudo wget -O $NAME.service -P /etc/systemd/system/ "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
+    fancy_message warn "You will need to edit ${GREEN}/etc/systemd/system/$NAME.service${NC} to add your user in the blank entry"
+    fancy_message info "You should put in $(whoami)"
+    exit
 }
 function mine-jar() {
     JARNAME=$2
