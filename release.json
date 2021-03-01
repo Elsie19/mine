@@ -1,12 +1,8 @@
 {
-   "vanilla": [
-      {
-         "url": "test"
-      }
-   ]
-  "forge": [
-     {
-         "url": "test"
-     }
-   ]
+   "vanilla": {
+      "url": "test"
+   },
+   "forge": {
+      "url": "test"
+   }
 }
