@@ -84,6 +84,7 @@ function initmine() {
     echo '#!/bin/sh
     cd $(dirname $0)
     java -jar -server java -Xms1G -Xmx1G server.jar' > start.sh
+    fancy_message info "You should look here for more optimized flags: https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/"
 }
 function mine-jar() {
     JARNAME=$1
