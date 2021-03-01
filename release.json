@@ -3,7 +3,7 @@
       "url": "test"
    },
    "forge": {
-      "url": "test"
+      "url": "https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.16.5-36.0.42/forge-1.16.5-36.0.42-installer.jar"
    },
    "fabric": {
       "url": "test"
