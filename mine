@@ -82,12 +82,13 @@ function initmine() {
     mine-jar $NAME
     fancy_message info "Accepting EULA"
     echo 'eula=true' > eula.txt
-    fancy_message info "Creating startup script"
+    fancy_message info "Creating basic startup script for 1GB of RAM"
     touch start.sh
     echo '#!/bin/sh
 cd $(dirname $0)
 java -jar -server -Xms1G -Xmx1G server.jar nogui' > start.sh
-    fancy_message info "You should look here for more optimized flags: ${GREEN}https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/${NC}"
+    chmod +x start.sh
+    fancy_message info "You should look here for more optimized flags: ${GREEN}https://mcflags.emc.gs${NC}"
     fancy_message info "Installing systemd service"
     cd /etc/systemd/system
     sudo wget -q -O $NAME.service "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
@@ -133,9 +134,11 @@ while test $# -gt 0; do
       # Download
       case $2 in
       vanilla)
-        fancy_message info "Downlading vanilla jar"
-        ....
-        ....
+        sudo mkdir /opt/mine-vanilla/
+        sudo chown -R $USER:$USER /opt/mine-vanilla/
+        cd /opt/mine-vanilla
+        initmine vanilla
+        exit
         ;;
       forge)
         sudo mkdir /opt/mine-forge/
