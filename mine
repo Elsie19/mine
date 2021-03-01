@@ -136,14 +136,16 @@ while test $# -gt 0; do
         ....
         ;;
       forge)
-        mkdir /opt/mine-forge || fancy_message error "Could not write to /opt/mine-forge" && exit 1
+        sudo mkdir /opt/mine-forge/
+        sudo chmod -R 775 /opt/mine-forge
         cd /opt/mine-forge
         initmine forge
         java -jar /opt/mine-forge/server.jar --installServer
         exit
         ;;
       fabric)
-        mkdir /opt/mine-fabric || fancy_message error "Could not write to /opt/mine-fabric" && exit 1
+        sudo mkdir /opt/mine-fabric/
+        sudo chmod -R 775 /opt/mine-fabric
         cd /opt/mine-fabric
         initmine fabric
         mv server.jar fabric-installer.jar
@@ -154,12 +156,14 @@ while test $# -gt 0; do
         exit
         ;;
       paper)
-        mkdir /opt/mine-paper || fancy_message error "Could not write to /opt/mine-paper" && exit 1
+        sudo mkdir /opt/mine-paper
+        sudo chmod -R 775 /opt/mine-paper
         cd /opt/mine-paper
         initmine paper
         ;;
       spigot)
-        mkdir /opt/mine-spigot || fancy_message error "Could not write to /opt/mine-spigot" && exit 1
+        sudo mkdir /opt/mine-spigot
+        sudo chmod -R 775 /opt/mine-spigot
         cd /opt/mine-spigot
         initmine spigot
         mv server.jar buildtools.jar
