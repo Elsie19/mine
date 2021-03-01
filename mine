@@ -72,7 +72,20 @@ On_IBlue='\033[0;104m'    # Blue
 On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
-
+function initmine() {
+    NAME=$1
+    DIR=/opt/mine-$NAME
+    cd $DIR
+    fancy_message info "Making directories"
+    mkdir {server,backups}
+    cd server
+    mine-jar $NAME
+}
+function mine-jar() {
+    JARNAME=$1
+    wget $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .$(JARNAME).url)
+    fancy_message info "Downloaded $NAME"
+}
 function fancy_message() {
     if [ -z "${1}" ] || [ -z "${2}" ]; then
       return
