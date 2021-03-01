@@ -4,14 +4,17 @@
    },
    "forge": {
       "url": "https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.16.5-36.0.42/forge-1.16.5-36.0.42-installer.jar"
+      "version": "1.16.5"
    },
    "fabric": {
       "url": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.6.1.51/fabric-installer-0.6.1.51.jar"
+      "version": "1.16.5"
    },
    "spigot": {
       "url": "test"
    },
    "paper": {
       "url": "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/505/downloads/paper-1.16.5-505.jar"
+      "version": "1.16.5"
    }
 }
