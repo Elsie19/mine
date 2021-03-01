@@ -1,1 +1,3 @@
 # mine
+
+Quick start your minecraft server with mine! You can one command install many types of servers like Spigot, Paper, Vanilla, Forge, etc...
