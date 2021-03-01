@@ -80,10 +80,14 @@ function initmine() {
     mkdir {server,backups}
     cd server
     mine-jar $NAME
+    touch start.sh
+    echo '#!/bin/sh
+    cd $(dirname $0)
+    java -jar -server java -Xms1G -Xmx1G server.jar' > start.sh
 }
 function mine-jar() {
     JARNAME=$1
-    wget $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .$(JARNAME).url)
+    wget -q -O server.jar $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .$(JARNAME).url)
     fancy_message info "Downloaded $NAME"
 }
 function fancy_message() {
@@ -135,7 +139,7 @@ while test $# -gt 0; do
       paper)
         mkdir /opt/mine-paper || fancy_message error "Could not write to /opt/mine-paper" && exit 1
         cd /opt/mine-paper
-        wget $(curl -s https://github.com/Henryws/mine/raw/master/release.json | jq .paper.url)
+        initmine paper
         ;;
      *)
      esac
