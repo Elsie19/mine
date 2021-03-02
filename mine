@@ -292,7 +292,7 @@ while test $# -gt 0; do
       BACKUP=$3
       if ask "Do you want to continue? This will overwrite the contents of ${GREEN}/opt/mine-$SERVER/server${NC}" N; then
         cd /opt/mine-$SERVER/server/
-        rm -rf /opt/mine-$SERVER/server/
+        rm -rf /opt/mine-$SERVER/server/*
         mv /opt/mine-$SERVER/backups/$BACKUP.zip /opt/mine-$SERVER/server/
         unzip /opt/mine-$SERVER/server/$BACKUP.zip /opt/mine-$SERVER/server/
         fancy_message info "Rolled-back the server to $BACKUP"
