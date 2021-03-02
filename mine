@@ -228,6 +228,14 @@ while test $# -gt 0; do
         mv spigot-*.jar server.jar
         fancy_message info "Removing BuildTools' directories"
         rm -rf {apache-maven-3.6.0,BuildData,Bukkit,CraftBukkit,Spigot,work}
+        exit
+        ;;
+      purpur)
+        sudo mkdir /opt/mine-purpur
+        sudo chown -R $USER:$USER /opt/mine-purpur
+        cd /opt/mine/spigot
+        initmine purpur
+        exit
         ;;
      *)
      esac
