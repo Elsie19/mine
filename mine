@@ -280,8 +280,13 @@ while test $# -gt 0; do
       ;;
     -Ls|--list-servers)
       cd /opt
-      /bin/ls -d */ | grep 'mine'
+      servers=$(/bin/ls -d */ | grep 'mine-')
+      echo "${version//mine-}"
       exit
+      ;;
+    -A|--attach)
+      SERVER=$2
+      screen -dmS $SERVER
       ;;
      *)
       mine -h
