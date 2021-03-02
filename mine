@@ -303,7 +303,7 @@ while test $# -gt 0; do
       ;;
     -S|--servers)
       fancy_message info "These are the valid server types you can download"
-      curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq keys
+      curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq 'with_entries(.value |= .description)'
       ;;
     -Ls|--list-servers)
       cd /opt
