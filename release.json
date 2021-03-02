@@ -1,26 +1,32 @@
 {
    "vanilla": {
       "url": "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar",
-      "version": "1.16.5"
+      "version": "1.16.5",
+      "description": "Just a plain server"
    },
    "forge": {
       "url": "https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.16.5-36.0.42/forge-1.16.5-36.0.42-installer.jar",
-      "version": "1.16.5"
+      "version": "1.16.5",
+      "description": "Forge is a free, open-source modding API all of your favourite mods use"
    },
    "fabric": {
       "url": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.6.1.51/fabric-installer-0.6.1.51.jar",
-      "version": "1.16.5"
+      "version": "1.16.5",
+      "description": "Fabric is a lightweight, experimental modding toolchain for Minecraft."
    },
    "spigot": {
       "url": "https://hub.spigotmc.org/jenkins/view/All/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar",
-      "version": "1.16.5"
+      "version": "1.16.5",
+      "description": "SpigotMC, also known simply as Spigot, is a fork of the popular Bukkit server mod. Spigot is meant to increase performance and efficiency, while maintaining compatibility with Bukkit plugins."
    },
    "paper": {
       "url": "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/505/downloads/paper-1.16.5-505.jar",
-      "version": "1.16.5"
+      "version": "1.16.5",
+      "description": "Paper is the next generation of Minecraft server, compatible with Spigot plugins and offering uncompromising performance."
    },
    "purpur": {
       "url": "https://ci.pl3x.net/job/Purpur/lastSuccessfulBuild/artifact/final/purpurclip.jar",
-      "version": "1.16.5"
+      "version": "1.16.5",
+      "description": "Purpur is a fork of Paper and Tuinity with the goal of providing new and interesting configuration options, which allow for creating a unique gameplay experience not seen anywhere else."
    }
 }
