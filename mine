@@ -163,9 +163,8 @@ ask() {
 while test $# -gt 0; do
   case "$1" in
     -h|--help)
-      echo " "
-      echo "options:"
-      echo " "
+      echo "options:
+      -D      Will download and install the server of your choice. Run mine -S to find valid servers"
       exit 0
       ;;
     -D|--download)
@@ -249,7 +248,7 @@ while test $# -gt 0; do
       ;;
     -R|--remove)
       SERVER=$2
-      if ask "${RED}Do you want to remove $SERVER? This is a potentially dangerous command so be cautious${NC}" N;
+      if ask "${RED}Do you want to remove $SERVER? This is a potentially dangerous command so be cautious${NC}" N; then
         fancy_message info "Stopping server"
         systemctl stop $SERVER
         # Finds last backup and puts in /tmp in case of accident
@@ -275,67 +274,13 @@ while test $# -gt 0; do
       mine-jar $SERVER
       exit 0
       ;;
-    -Ud|--update-dev)
-      UPDATEBRANCH=1.0.4-Celeste
-      fancy_message warn "You may experience severe bugs"
-      printf "${RED}Do you want to continue? [y/N]${NC} "
-      read -r input
-      if [[ $input = y ]]; then
-        sudo pacstall -U > /dev/null
-        sudo sed -i 's/master/'"$UPDATEBRANCH"'/g' /bin/pacstall
-        fancy_message info "Switched to dev branch"
-        exit
-      else
-        exit
-      fi
+    -S|--servers)
+      fancy_message info "These are the valid server types you can download"
+      curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq keys
       ;;
-    -L|--list)
-      echo -e ${BOLD}$(/bin/ls -1 /var/log/pacstall_installed | tr '_' ' ')${NORMAL}
-      exit
-      ;;
-    -D|--download)
-      PACKAGE=$2
-      if [[ -z "$PACKAGE" ]]; then
-        fancy_message error "You failed to specify a package"
-        exit 1
-      fi
-      INSTALLING=0
-      REPO=$(cat /usr/share/pacstall/repo/pacstallrepo.txt)
-      source /usr/share/pacstall/scripts/download.sh
-      exit
-      ;;
-    -Ra|--remove-all)
-      PACKAGE=$*
-      for i in $PACKAGE ; do
-        if [ -f /var/log/pacstall_installed/$i ] ; then
-          LOCATION=installed
-        else
-          if [ -f /var/log/pacstall_orphaned/$i ] ; then
-            LOCATION=orphaned
-          fi
-        fi
-        source /var/log/pacstall_$lOCATION/$i.pacscript
-        sudo apt remove $depends
-        sudo pacstall -R $i
-        rm -rf /var/log/pacstall_$LOCATION/$i.pacscript
-      done
-      ;;
-    -Qd|--query-depends)
-      PACKAGE=$2
-      REPO=$(cat /usr/share/pacstall/repo/pacstallrepo.txt)
-      URL="https://raw.githubusercontent.com/$REPO/master/packages/$PACKAGE/$PACKAGE.pacscript"
-      if [[ -z "$PACKAGE" ]]; then
-          fancy_message error "You failed to specify a package"
-          exit 1
-      fi
-      if curl --output /dev/null --silent --head --fail "$URL"; then
-          source <(curl -s $URL) >/dev/null 2>&1
-      else
-          fancy_message error "$PACKAGE doesn't seem to exist"
-          exit 1
-      fi
-      echo -e "${GREEN}${BOLD}build_depends${NORMAL}${NC}=\"$build_depends\""
-      echo -e "${GREEN}${BOLD}depends${NORMAL}${NC}=\"$depends\""
+    -Ls|--list-servers)
+      cd /opt
+      /bin/ls -d */ | grep 'mine'
       exit
       ;;
      *)
