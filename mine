@@ -109,11 +109,16 @@ function initmine() {
     fancy_message info "Creating basic startup script for 1GB of RAM"
     touch start.sh
     echo '#!/bin/sh
+# makes the script runnable from anywhere on the system
 BINDIR=$(dirname "$(readlink -fn "$0")")
 cd "$BINDIR"
+# INITIAL_MEM is how much memory you want java to start with. You can edit it with G (gigabytes) or m (megabytes)
 INITIAL_MEM="1G"
+# MAX_MEM is the same thing as above except it is the hard limit on how much memory java will run with. If INITIAL_MEM and MAX_MEM are the same it will help with garbage collecting.
 MAX_MEM="1G"
+# Put flags in between the quotes below
 FLAGS=""
+# nogui is at the end because without it will suck all your available ram. The -server flag is to tell java to conserve ram and cpu as much as possible
 java -jar -server -Xms$INITIAL_MEM -Xmx$MAX_MEM $FLAGS server.jar nogui' > start.sh
     chmod +x start.sh
     fancy_message info "You should look here for more optimized flags: ${GREEN}https://mcflags.emc.gs${NC}"
