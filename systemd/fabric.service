@@ -1,4 +1,3 @@
-fabric-server-launch.jar
 [Unit]
 Description=Fabric Minecraft Server
 After=network.target
@@ -19,7 +18,6 @@ ExecStop=/usr/bin/screen -p 0 -S fabric -X eval 'stuff \"stop\"\015'
 # Wait for the PID to die - otherwise it's killed after this command finishes!
 ExecStop=/bin/bash -c "while ps -p $MAINPID > /dev/null; do /bin/sleep 1; done"
 # Note that absolute paths for all executables are required!
-
 
 [Install]
 WantedBy=multi-user.target
