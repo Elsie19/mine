@@ -308,6 +308,7 @@ while test $# -gt 0; do
         systemctl stop $SERVER
         # Finds last backup and puts in /tmp in case of accident
         LAST=$(find /opt/mine-$SERVER/backups -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -f2- -d" ")
+        mv /opt/mine-$SERVER/backups/$LAST /tmp
         fancy_message info "Put last known backup in ${GREEN}/tmp${NC} in case your cat accidently mashed the keyboard. Your welcome."
         fancy_message info "Removing server"
         sudo rm -rf /opt/mine-$SERVER
