@@ -274,8 +274,14 @@ while test $# -gt 0; do
       SERVER=$2
       less /opt/mine-$SERVER/server/logs/latest.log
       ;;
-    -V|--version)
-      echo "${GREEN}mine${NC}"
+    -X|--start)
+      SERVER=$2
+      sudo systemctl start $SERVER
+      exit
+      ;;
+    -XX|--stop)
+      SERVER=$2
+      sudo systemctl stop $SERVER
       exit
       ;;
     -U|--update)
