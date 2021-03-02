@@ -2,11 +2,8 @@
 <p align="center">
 <a href="https://minecraft.net"><img src="https://i.redd.it/lhyfpzbifpo21.png" width="200" height="200"></a>
 </p>
-Quick start your minecraft server with mine! You can one command install many types of servers like Spigot, Paper, Vanilla, Forge, etc...
+Quick start your minecraft server with mine! You can one command install many types of servers, backup and rollback servers with ease, easily destroy servers, and much more. Look at Installation to start
 
-Run `mine -D {spigot,paper,vanilla,forge}` to download and setup the server. You cannot install multiple of the same server (i.e you can't download and run two Paper servers.
-
-Only works on Linux distro's with systemd
 
 ## Features
 * Uses a configuration that is easily accesible by the user so you don't have to edit the service files in root
@@ -26,3 +23,7 @@ Copy paste `sh -c "$(curl -fsSL https://git.io/Jthn5)"` in a terminal and press 
 - `mine -XX` Will stop the specified server
 - `mine -B` Will stop and backup the specifed server
 - `mine -RB` Will recover the specified server
+
+
+## Examples
+I want to start a paper server so I would run `mine -D paper` to download and install all the necessary files. Then I would run `mine -X paper` to start it. Then I join the server locally and I realize I'm not op. I would run `mine -A paper` to enter the console and I would type `op yourName` to become op. Then I would type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit the console. But I don't like paper and I want to try a modded server. I stop the server with `mine -XX paper` although the next commmand does that automatically. I would destroy the paper server with `mine -R paper` and when that's done I would install forge with `mine -D forge`. But forge is kind of slow so I want to use [aikars]https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft() flags. I would run `cd /opt/mine-forge/server` and edit the file `start.sh` in a text editor. I would replace everything after `-server` but before `server.jar` and replace that with the flags from the link above.
