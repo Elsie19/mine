@@ -109,6 +109,7 @@ function initmine() {
     fancy_message info "Creating basic startup script for 1GB of RAM"
     touch start.sh
     echo '#!/bin/sh
+# This script is run by systemd so you can edit anything related to the server startup here without using root and messing up something with systemd
 # makes the script runnable from anywhere on the system
 BINDIR=$(dirname "$(readlink -fn "$0")")
 cd "$BINDIR"
