@@ -304,6 +304,12 @@ while test $# -gt 0; do
       SERVER=$2
       screen -dmS $SERVER
       ;;
+    -E|--edit)
+      SERVER=$2
+      KEY="$3"
+      VALUE="$4"
+      sed -i "s/$KEY=.*/$KEY=$VALUE/g" /opt/mine-$SERVER/server/server.properties
+      ;;
      *)
       mine -h
       exit 1
