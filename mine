@@ -239,6 +239,7 @@ while test $# -gt 0; do
       cd $DIR
       zip -q -r server backups/$FILE.zip
       fancy_message info "Wrote to ${GREEN}backups/$FILE.zip${NC}"
+      fancy_message info "If you want to rollback this server you would run ${RED}mine -RB $SERVER $FILE${NC}"
       exit
       ;;    
     -RB|--recover-backup)
@@ -249,7 +250,7 @@ while test $# -gt 0; do
         rm -rf /opt/mine-$SERVER/server/
         mv /opt/mine-$SERVER/backups/$BACKUP.zip /opt/mine-$SERVER/server/
         unzip /opt/mine-$SERVER/server/$BACKUP.zip /opt/mine-$SERVER/server/
-        fancy_message info "Backed up server to $BACKUP"
+        fancy_message info "Rolled-back the server to $BACKUP"
         exit
       else
         exit 1
