@@ -17,3 +17,8 @@ Only works on Linux distro's with systemd
 
 ## Installation
 Copy paste `sh -c "$(curl -fsSL https://git.io/Jthn5)"` in a terminal and press <kbd>enter</kbd>. If you don't know what I'm talking about look [here](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview) because this is very important to running any server (not just Minecraft)
+
+
+## Commands
+- `mine -D` Will download and install the specified server (run `mine -S` to see all valid servers)
+- `mine -A` Will send you to the specified servers console. Type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit
