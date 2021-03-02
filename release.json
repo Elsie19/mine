@@ -12,7 +12,7 @@
       "version": "1.16.5"
    },
    "spigot": {
-      "url": "test",
+      "url": "https://hub.spigotmc.org/jenkins/view/All/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar",
       "version": "1.16.5"
    },
    "paper": {
