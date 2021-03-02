@@ -111,7 +111,10 @@ function initmine() {
     echo '#!/bin/sh
 BINDIR=$(dirname "$(readlink -fn "$0")")
 cd "$BINDIR"
-java -jar -server -Xms1G -Xmx1G server.jar nogui' > start.sh
+INITIAL_MEM="1G"
+MAX_MEM="1G"
+FLAGS=""
+java -jar -server -Xms$INITIAL_MEM -Xmx$MAX_MEM $FLAGS server.jar nogui' > start.sh
     chmod +x start.sh
     fancy_message info "You should look here for more optimized flags: ${GREEN}https://mcflags.emc.gs${NC}"
     fancy_message info "Installing systemd service"
