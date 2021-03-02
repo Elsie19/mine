@@ -93,8 +93,9 @@ java -jar -server -Xms1G -Xmx1G server.jar nogui' > start.sh
     fancy_message info "Installing systemd service"
     cd /etc/systemd/system
     sudo wget -q -O $NAME.service "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
-    fancy_message warn "You will need to edit ${GREEN}/etc/systemd/system/$NAME.service${NC}. Add your user in the line that says User="
-    fancy_message info "You should put in ${RED}$(whoami)${NC}"
+    sudo sed -i "s/User=/User=$($whoami)/g" "/etc/systemd/system/$NAME.service"
+    # fancy_message warn "You will need to edit ${GREEN}/etc/systemd/system/$NAME.service${NC}. Add your user in the line that says User="
+    # fancy_message info "You should put in ${RED}$(whoami)${NC}"
     exit
 }
 function mine-jar() {
