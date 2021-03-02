@@ -311,6 +311,8 @@ while test $# -gt 0; do
         fancy_message info "Put last known backup in ${GREEN}/tmp${NC} in case your cat accidently mashed the keyboard. Your welcome."
         fancy_message info "Removing server"
         sudo rm -rf /opt/mine-$SERVER
+        fancy_message info "Removing systemd service"
+        sudo rm /etc/systemd/system/"$SERVER".service
         exit
       else
         exit
