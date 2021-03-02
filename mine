@@ -199,18 +199,18 @@ ask() {
 while test $# -gt 0; do
   case "$1" in
     -h|--help)
-      echo "options:
-      -D      Will download and install the server of your choice. Run mine -S to find valid servers
-      -B      Will stop and backup the specified server
-      -RB     Will recover the specified backup (You will lose everything since the last backup)
-      -R      Will destroy the specified server
-      -L      Will open the latest log from specified server
-      -S      Will list valid servers to download
-      -Ls     Will list your current servers
-      -A      Will open the console to the specified server
-      -X      Will start the specified server
-      -XX     Will stop the specifed server
-      -E      Change a value of server.properties easily"
+      echo 'options: Flag | Description | Example
+      -D   |   Will download and install the server of your choice. Run mine -S to find valid servers | mine -D paper
+      -B   |   Will stop and backup the specified server | mine -B vanilla
+      -RB  |   Will recover the specified backup (You will lose everything since the last backup) | mine -RB vanilla 193827
+      -R   |   Will destroy the specified server | mine -R forge
+      -L   |   Will open the latest log from specified server | mine -L purpur
+      -S   |   Will list valid servers to download | mine -S
+      -Ls  |   Will list your current servers | mine -Ls
+      -A   |   Will open the console to the specified server | mine -A spigot
+      -X   |   Will start the specified server | mine -X paper
+      -XX  |   Will stop the specifed server | mine -XX paper
+      -E   |   Change a value of server.properties easily | mine -E fabric server-port 25567'
       exit 0
       ;;
     -D|--download)
