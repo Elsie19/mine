@@ -22,3 +22,7 @@ Copy paste `sh -c "$(curl -fsSL https://git.io/Jthn5)"` in a terminal and press 
 ## Commands
 - `mine -D` Will download and install the specified server (run `mine -S` to see all valid servers)
 - `mine -A` Will send you to the specified servers console. Type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit
+- `mine -X` Will start the specified server
+- `mine -XX` Will stop the specified server
+- `mine -B` Will stop and backup the specifed server
+- `mine -RB` Will recover the specified server
