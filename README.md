@@ -14,4 +14,4 @@ Only works on Linux distro's with systemd
 
 
 ## Installation
-Copy paste `sh -c "$(curl -fsSL https://git.io/Jthn5)"` in a terminal and press <kbd>enter</kbd>. If you don't know what I'm talking about look [here](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
+Copy paste `sh -c "$(curl -fsSL https://git.io/Jthn5)"` in a terminal and press <kbd>enter</kbd>. If you don't know what I'm talking about look [here](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview) because this is very important to running any server (not just Minecraft)
