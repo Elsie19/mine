@@ -13,12 +13,11 @@ PrivateDevices=true
 NoNewPrivileges=true
 Type=forking
 WorkingDirectory=/opt/mine-paper/server
-ExecStart=/bin/sh -c '/usr/bin/screen -h 1024 -dmS paper ./start.sh'
+ExecStart=/bin/sh -c '/usr/bin/screen -h 1024 -dmS paper /opt/mine-paper/server/start.sh'
 ExecStop=/usr/bin/screen -p 0 -S paper -X eval 'stuff \"stop\"\015'
 # Wait for the PID to die - otherwise it's killed after this command finishes!
 ExecStop=/bin/bash -c "while ps -p $MAINPID > /dev/null; do /bin/sleep 1; done"
 # Note that absolute paths for all executables are required!
-
 
 [Install]
 WantedBy=multi-user.target
