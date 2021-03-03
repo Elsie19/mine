@@ -323,10 +323,11 @@ while test $# -gt 0; do
     -L|--log)
       SERVER=$2
       less /opt/mine-$SERVER/server/logs/latest.log
+      exit
       ;;
     -X|--start)
       SERVER=$2
-      systemctl start $SERVER
+      sudo systemctl start $SERVER
       exit
       ;;
     -XX|--stop)
@@ -342,6 +343,7 @@ while test $# -gt 0; do
     -S|--servers)
       fancy_message info "These are the valid server types you can download"
       curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq 'with_entries(.value |= .description)'
+      exit
       ;;
     -Ls|--list-servers)
       cd /opt
@@ -352,6 +354,7 @@ while test $# -gt 0; do
     -A|--attach)
       SERVER=$2
       screen -dmS $SERVER
+      exit
       ;;
     -E|--edit)
       SERVER=$2
