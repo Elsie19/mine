@@ -353,7 +353,7 @@ while test $# -gt 0; do
       ;;
     -A|--attach)
       SERVER=$2
-      screen -dmS $SERVER
+      screen -r $SERVER
       exit
       ;;
     -E|--edit)
