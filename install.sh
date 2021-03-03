@@ -6,12 +6,13 @@ echo '(       )\__   __/( (    /|(  ____ \
 | |(_)| |   | |   | (\ \) ||  __)   
 | |   | |   | |   | | \   || (      
 | )   ( |___) (___| )  \  || (____/\
-|/     \|\_______/|/    )_)(_______/'
+|/     \|\_______/|/    )_)(_______/
+https://github.com/Henryws/mine'
 echo "Welcome to the mine installer"
 }
 
 banner
-echo "Checking for required packages"
+echo "Installing required packages"
 packagesNeeded='screen curl jq wget'
 if [ -x "$(command -v apk)" ];       then sudo apk add --no-cache $packagesNeeded
 elif [ -x "$(command -v apt-get)" ]; then sudo apt-get install $packagesNeeded
