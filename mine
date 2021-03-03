@@ -103,6 +103,7 @@ function initmine() {
     fancy_message info "Making directories"
     mkdir {server,backups}
     cd server
+    fancy_message info "Downloading $NAME"
     mine-jar $NAME
     fancy_message info "Accepting EULA"
     echo 'eula=true' > eula.txt
@@ -325,7 +326,7 @@ while test $# -gt 0; do
       ;;
     -X|--start)
       SERVER=$2
-      sudo systemctl start $SERVER
+      systemctl start $SERVER
       exit
       ;;
     -XX|--stop)
