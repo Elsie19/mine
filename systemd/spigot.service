@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=
 Nice=1
-KillMode=none
+KillMode=mixed
 SuccessExitStatus=0 1
 ProtectHome=false
 ProtectSystem=full
