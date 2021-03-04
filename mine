@@ -219,14 +219,14 @@ while test $# -gt 0; do
       # Download
       case $2 in
       vanilla)
-        sudo mkdir /opt/mine-vanilla/
+        sudo mkdir /opt/mine-vanilla/ || exit 1
         sudo chown -R $USER:$USER /opt/mine-vanilla/
         cd /opt/mine-vanilla
         initmine vanilla
         exit
         ;;
       forge)
-        sudo mkdir /opt/mine-forge/
+        sudo mkdir /opt/mine-forge/ || exit 1
         sudo chown -R $USER:$USER /opt/mine-forge
         cd /opt/mine-forge
         initmine forge
@@ -234,7 +234,7 @@ while test $# -gt 0; do
         exit
         ;;
       fabric)
-        sudo mkdir /opt/mine-fabric/
+        sudo mkdir /opt/mine-fabric/ || exit 1
         sudo chown -R $USER:$USER /opt/mine-fabric
         cd /opt/mine-fabric
         initmine fabric
@@ -246,7 +246,7 @@ while test $# -gt 0; do
         exit
         ;;
       paper)
-        sudo mkdir /opt/mine-paper
+        sudo mkdir /opt/mine-paper || exit 1
         sudo chown -R $USER:$USER /opt/mine-paper
         cd /opt/mine-paper
         initmine paper
@@ -361,6 +361,7 @@ while test $# -gt 0; do
       KEY="$3"
       VALUE="$4"
       sed -i "s/$KEY=.*/$KEY=$VALUE/g" /opt/mine-$SERVER/server/server.properties
+      exit
       ;;
      *)
       mine -h
