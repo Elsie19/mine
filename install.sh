@@ -25,7 +25,7 @@ if [[ $totalm -lt 1024 ]]; then
     echo "mine has detected that you have less than 1GB of RAM. This may be wrong but if not, you must edit all systemd files related to mine to have less than 1GB"
 fi
 
-sudo wget -O /usr/bin/mine "https://raw.githubusercontent.com/Henryws/mine/master/mine"
+sudo wget -q -O /usr/bin/mine "https://raw.githubusercontent.com/Henryws/mine/master/mine"
 sudo chmod +x /usr/bin/mine
 
 echo "To get started run mine -h for help"
