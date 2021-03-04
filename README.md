@@ -6,14 +6,14 @@ Quick start your minecraft server with mine! You can one command install many ty
 
 
 ## Features
-* Uses a configuration that is easily accesible by the user so you don't have to edit the service files in root
-* Uses the screen program to enter your servers console from anywhere. Run `mine -A server` to enter and <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit. Make sure you change server to whatever your running (i.e `mine -A paper` if you are running a paper server or just run `screen -r` if you are running one server)
+* Uses an easy to read configuration that is accesible by the user so you don't have to edit the service files in root
+* Uses the screen program to enter your servers console from anywhere.
 * It's okay if you don't understand any of this and you just have the need to _craft_. Just look at installation.
 
 
 
 ## Installation
-You will need a server or computer running some form of Linux with systemd.
+You will need a server or computer running some form of Linux with systemd. You can check if you are using systemd with the command `pstree -p`
 
 Copy paste `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Henryws/mine/master/install.sh)"` in a terminal and press <kbd>enter</kbd>. If you don't know what I'm talking about look [here](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview) because this is very important to running any server (not just Minecraft)
 
