@@ -137,7 +137,7 @@ function mine-jar() {
     JARNAME=$1
     # Wgets output of curling release.json and jq'ing the name and url
     # wget -q -O server.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq -r ."$JARNAME".url)
-    wget --progress=bar:force -q -O server.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq -r ."$JARNAME".url) 2>&1 | progressfilt
+    wget --progress=bar:force -O server.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq -r ."$JARNAME".url) 2>&1 | progressfilt
     fancy_message info "Downloaded $NAME"
 }
 function fancy_message() {
