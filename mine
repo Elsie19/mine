@@ -278,20 +278,25 @@ while test $# -gt 0; do
     -B|--backup)
       SERVER=$2
       FILE=$(date +%s)
-      [ -d /opt/mine-$SERVER ] || fancy_message error "$SERVER not valid" && exit 1
+      [ -d /opt/mine-$SERVER ] || fancy_message error "$SERVER not valid"
       DIR=/opt/mine-$SERVER
       fancy_message info "Stopping server"
-      systemctl stop $SERVER
+      sudo systemctl stop $SERVER
       cd $DIR
-      zip -q -r server backups/$FILE.zip
+      zip -q -r backups/$FILE.zip server/
       fancy_message info "Wrote to ${GREEN}backups/$FILE.zip${NC}"
       fancy_message info "If you want to rollback this server you would run ${RED}mine -RB $SERVER $FILE${NC}"
+      if ask "Do you want to start the server again?" N; then
+          mine -X $SERVER
+      fi
       exit
       ;;    
     -RB|--recover-backup)
       SERVER=$2
       BACKUP=$3
       if ask "Do you want to continue? This will overwrite the contents of ${GREEN}/opt/mine-$SERVER/server${NC}" N; then
+        fancy_message info "Stopping server"
+        sudo systemctl stop $SERVER
         cd /opt/mine-$SERVER/server/
         rm -rf /opt/mine-$SERVER/server/*
         mv /opt/mine-$SERVER/backups/$BACKUP.zip /opt/mine-$SERVER/server/
@@ -348,7 +353,7 @@ while test $# -gt 0; do
     -Ls|--list-servers)
       cd /opt
       servers=$(/bin/ls -d */ | grep 'mine-')
-      echo "${version//mine-}"
+      echo "${servers//mine-}" | tr -d '/'
       exit
       ;;
     -A|--attach)
