@@ -230,7 +230,11 @@ while test $# -gt 0; do
         sudo chown -R $USER:$USER /opt/mine-forge
         cd /opt/mine-forge
         initmine forge
-        java -jar /opt/mine-forge/server.jar --installServer
+        cd server
+        fancy_message info "Running install. This may take a while"
+        java -jar /opt/mine-forge/server/server.jar --installServer 2>&1 1>/dev/null
+        rm server.jar
+        mv forge-*.jar server.jar
         exit
         ;;
       fabric)
