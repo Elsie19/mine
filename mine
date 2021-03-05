@@ -73,15 +73,6 @@ On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
 
-getMyIP() {
-    local _ip _line
-    while IFS=$': \t' read -a _line ;do
-        [ -z "${_line%inet}" ] &&
-           _ip=${_line[${#_line[1]}>4?1:2]} &&
-           [ "${_ip#127.0.0.1}" ] && echo $_ip && return 0
-      done< <(LANG=C /sbin/ifconfig)
-}
-
 progressfilt ()
 {
     local flag=false c count cr=$'\r' nl=$'\n'
@@ -173,13 +164,13 @@ ask() {
     local prompt default reply
 
     if [[ ${2:-} = 'Y' ]]; then
-        prompt='Y/n'
+        prompt='${GREEN}Y${NC}/${RED}n${NC}'
         default='Y'
     elif [[ ${2:-} = 'N' ]]; then
-        prompt='y/N'
+        prompt='${GREEN}y${NC}/${RED}N${NC}'
         default='N'
     else
-        prompt='y/n'
+        prompt='${GREEN}y${NC}/${RED}n${NC}'
         default=''
     fi
 
