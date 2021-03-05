@@ -140,6 +140,22 @@ function mine-jar() {
     wget --progress=bar:force -O server.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq -r ."$JARNAME".url) 2>&1 | progressfilt
     fancy_message info "Downloaded $NAME"
 }
+
+spinner()
+{
+    local pid=$1
+    local delay=0.75
+    local spinstr='|/-\'
+    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+        local temp=${spinstr#?}
+        printf " [%c]  " "$spinstr"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\b\b\b\b\b\b"
+    done
+    printf "    \b\b\b\b"
+}
+
 function fancy_message() {
     if [ -z "${1}" ] || [ -z "${2}" ]; then
       return
@@ -164,13 +180,13 @@ ask() {
     local prompt default reply
 
     if [[ ${2:-} = 'Y' ]]; then
-        prompt='${GREEN}Y${NC}/${RED}n${NC}'
+        prompt="${GREEN}Y${NC}/${RED}n${NC}"
         default='Y'
     elif [[ ${2:-} = 'N' ]]; then
-        prompt='${GREEN}y${NC}/${RED}N${NC}'
+        prompt="${GREEN}y${NC}/${RED}N${NC}"
         default='N'
     else
-        prompt='${GREEN}y${NC}/${RED}n${NC}'
+        prompt="${GREEN}y${NC}/${RED}n${NC}"
         default=''
     fi
 
@@ -232,7 +248,8 @@ while test $# -gt 0; do
         initmine forge
         cd server
         fancy_message info "Running install. This may take a while"
-        java -jar /opt/mine-forge/server/server.jar --installServer 2>&1 1>/dev/null
+        java -jar /opt/mine-forge/server/server.jar --installServer 2>&1 1>/dev/null &
+        spinner $!
         rm server.jar
         mv forge-*.jar server.jar
         exit
@@ -351,7 +368,7 @@ while test $# -gt 0; do
       ;;
     -S|--servers)
       # Like mine-jar but just jq's. The -C keeps colors and removes jq letters
-      fancy_message info "These are the valid server types you can download"
+      fancy_message info "Fetching server types"
       curl -s https://raw.githubusercontent.com/Henryws/mine/master/release.json | jq -C 'with_entries(.value |= .description)' | tr -d '"}{,'
       exit
       ;;
