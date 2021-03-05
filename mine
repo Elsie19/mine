@@ -125,13 +125,11 @@ java -jar -server -Xms$INITIAL_MEM -Xmx$MAX_MEM $FLAGS server.jar nogui' > start
     chmod +x start.sh
     fancy_message info "You should look here for more optimized flags: ${GREEN}https://mcflags.emc.gs${NC}"
     fancy_message info "Installing systemd service"
-    cd /etc/systemd/system
     whoami=$(whoami)
-    sudo wget -q -O $NAME.service "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
+    sudo wget -q -O /etc/systemd/system/$NAME.service "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
     sudo sed -i "s/User=/User=$whoami/g" "/etc/systemd/system/$NAME.service"
     # fancy_message warn "You will need to edit ${GREEN}/etc/systemd/system/$NAME.service${NC}. Add your user in the line that says User="
     # fancy_message info "You should put in ${RED}$(whoami)${NC}"
-    exit
 }
 function mine-jar() {
     JARNAME=$1
@@ -243,13 +241,12 @@ while test $# -gt 0; do
         ;;
       forge)
         sudo mkdir /opt/mine-forge/ || exit 1
-        sudo chown -R $USER:$USER /opt/mine-forge
-        cd /opt/mine-forge
+        sudo chown -R $USER:$USER /opt/mine-forge/
+        cd /opt/mine-forge/
         initmine forge
-        cd server
+        cd server/
         fancy_message info "Running install. This may take a while"
-        java -jar /opt/mine-forge/server/server.jar --installServer 2>&1 1>/dev/null &
-        spinner $!
+        java -jar server.jar --installServer 2>&1
         rm server.jar
         mv forge-*.jar server.jar
         exit
@@ -257,7 +254,7 @@ while test $# -gt 0; do
       fabric)
         sudo mkdir /opt/mine-fabric/ || exit 1
         sudo chown -R $USER:$USER /opt/mine-fabric
-        cd /opt/mine-fabric
+        cd /opt/mine-fabric/
         initmine fabric
         mv server.jar fabric-installer.jar
         java -jar /opt/mine-fabric/fabric-installer.jar server
@@ -267,16 +264,16 @@ while test $# -gt 0; do
         exit
         ;;
       paper)
-        sudo mkdir /opt/mine-paper || exit 1
-        sudo chown -R $USER:$USER /opt/mine-paper
-        cd /opt/mine-paper
+        sudo mkdir /opt/mine-paper/ || exit 1
+        sudo chown -R $USER:$USER /opt/mine-paper/
+        cd /opt/mine-paper/
         initmine paper
         exit
         ;;
       spigot)
-        sudo mkdir /opt/mine-spigot
-        sudo chown -R $USER:$USER /opt/mine-spigot
-        cd /opt/mine-spigot
+        sudo mkdir /opt/mine-spigot/
+        sudo chown -R $USER:$USER /opt/mine-spigot/
+        cd /opt/mine-spigot/
         initmine spigot
         mv server.jar buildtools.jar
         fancy_message info "Go get a cup of coffee; This is going to take a while depending on the oomph of your computer"
@@ -287,13 +284,15 @@ while test $# -gt 0; do
         exit
         ;;
       purpur)
-        sudo mkdir /opt/mine-purpur
-        sudo chown -R $USER:$USER /opt/mine-purpur
-        cd /opt/mine/spigot
+        sudo mkdir /opt/mine-purpur/
+        sudo chown -R $USER:$USER /opt/mine-purpur/
+        cd /opt/mine/spigot/
         initmine purpur
         exit
         ;;
      *)
+     fancy_message error "run mine -S to see available servers"
+     exit 1
      esac
       ;;
     -B|--backup)
@@ -330,6 +329,7 @@ while test $# -gt 0; do
       ;;
     -R|--remove)
       SERVER=$2
+      if [ -d "/opt/mine-$SERVER" ]; then
       if ask "Do you want to remove $SERVER? This is a potentially dangerous command so be cautious" N; then
         fancy_message info "Stopping server"
         sudo systemctl stop $SERVER
@@ -345,11 +345,20 @@ while test $# -gt 0; do
       else
         exit
       fi
+      else
+      fancy_message error "$SERVER doesn't exist"
+      exit 1
+      fi
       ;;
     -L|--log)
       SERVER=$2
+      if [[ -n "$SERVER" ]]; then
       less /opt/mine-$SERVER/server/logs/latest.log
       exit
+      else
+      fancy_message error "You didn't specify a server"
+      exit 1
+      fi
       ;;
     -X|--start)
       SERVER=$2
