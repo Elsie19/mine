@@ -179,10 +179,10 @@ ask() {
     local prompt default reply
 
     if [[ ${2:-} = 'Y' ]]; then
-        prompt="${GREEN}Y${NC}/${RED}n${NC}"
+        prompt="${BIGreen}Y${NC}/${RED}n${NC}"
         default='Y'
     elif [[ ${2:-} = 'N' ]]; then
-        prompt="${GREEN}y${NC}/${RED}N${NC}"
+        prompt="${GREEN}y${NC}/${BIRed}N${NC}"
         default='N'
     else
         prompt="${GREEN}y${NC}/${RED}n${NC}"
