@@ -1,0 +1,12 @@
+#!/bin/bash
+sudo mkdir /opt/mine-spigot/
+sudo chown -R $USER:$USER /opt/mine-spigot/
+cd /opt/mine-spigot/
+initmine spigot
+mv server.jar buildtools.jar
+fancy_message info "Go get a cup of coffee; This is going to take a while depending on the oomph of your computer"
+java -jar buildtools.jar --rev latest
+mv spigot-*.jar server.jar
+fancy_message info "Removing BuildTools' directories"
+rm -rf {apache-maven-3.6.0,BuildData,Bukkit,CraftBukkit,Spigot,work}
+exit

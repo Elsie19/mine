@@ -234,79 +234,25 @@ while test $# -gt 0; do
       # Download
       case $2 in
       vanilla)
-        sudo mkdir /opt/mine-vanilla/ || exit 1
-        sudo chown -R $USER:$USER /opt/mine-vanilla/
-        cd /opt/mine-vanilla
-        initmine vanilla
-        exit
+        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/vanilla)
         ;;
       forge)
-        sudo mkdir /opt/mine-forge/ || exit 1
-        sudo chown -R $USER:$USER /opt/mine-forge/
-        cd /opt/mine-forge/
-        initmine forge
-        cd server/
-        fancy_message info "Running install. This may take a while"
-        java -jar server.jar --installServer 2>&1
-        rm server.jar
-        for f in *.jar; do mv -i "$f" server.jar; done
-        exit
+        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/forge)
         ;;
       fabric)
-        sudo mkdir /opt/mine-fabric/ || exit 1
-        sudo chown -R $USER:$USER /opt/mine-fabric
-        cd /opt/mine-fabric/
-        initmine fabric
-        mv server.jar fabric-installer.jar
-        java -jar /opt/mine-fabric/fabric-installer.jar server
-        echo '#!/bin/sh
-# This script is run by systemd so you can edit anything related to the server startup here without using root and messing up something with systemd
-# makes the script runnable from anywhere on the system
-BINDIR=$(dirname "$(readlink -fn "$0")")
-cd "$BINDIR"
-# INITIAL_MEM is how much memory you want java to start with. You can edit it with G (gigabytes) or m (megabytes)
-INITIAL_MEM="1G"
-# MAX_MEM is the same thing as above except it is the hard limit on how much memory java will run with. If INITIAL_MEM and MAX_MEM are the same it will help with garbage collecting.
-MAX_MEM="1G"
-# Put flags in between the quotes below
-FLAGS=""
-# nogui is at the end because without it will suck all your available ram. The -server flag is to tell java to conserve ram and cpu as much as possible
-java -jar -server -Xms$INITIAL_MEM -Xmx$MAX_MEM $FLAGS fabric-server-launch.jar nogui' > start.sh
-        exit
+        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/fabric)
         ;;
       paper)
-        sudo mkdir /opt/mine-paper/ || exit 1
-        sudo chown -R $USER:$USER /opt/mine-paper/
-        cd /opt/mine-paper/
-        initmine paper
-        exit
+        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/paper)
         ;;
       spigot)
-        sudo mkdir /opt/mine-spigot/
-        sudo chown -R $USER:$USER /opt/mine-spigot/
-        cd /opt/mine-spigot/
-        initmine spigot
-        mv server.jar buildtools.jar
-        fancy_message info "Go get a cup of coffee; This is going to take a while depending on the oomph of your computer"
-        java -jar buildtools.jar --rev latest
-        mv spigot-*.jar server.jar
-        fancy_message info "Removing BuildTools' directories"
-        rm -rf {apache-maven-3.6.0,BuildData,Bukkit,CraftBukkit,Spigot,work}
-        exit
+        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/spigot)
         ;;
       purpur)
-        sudo mkdir /opt/mine-purpur/
-        sudo chown -R $USER:$USER /opt/mine-purpur/
-        cd /opt/mine-purpur/
-        initmine purpur
-        exit
+        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/purpur)
         ;;
      tuinity)
-        sudo mkdir /opt/mine-tuinity/
-        sudo chown -R $USER:$USER /opt/mine-tuinity/
-        cd /opt/mine-tuinity/
-        initmine tuinity
-        exit
+       . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/tuinity)
         ;;
      *)
      fancy_message error "run mine -S to see available servers"

@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo mkdir /opt/mine-vanilla/ || exit 1
+sudo chown -R $USER:$USER /opt/mine-vanilla/
+cd /opt/mine-vanilla
+initmine vanilla
+exit

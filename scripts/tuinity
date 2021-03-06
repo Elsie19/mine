@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo mkdir /opt/mine-tuinity/
+sudo chown -R $USER:$USER /opt/mine-tuinity/
+cd /opt/mine-tuinity/
+initmine tuinity
+exit

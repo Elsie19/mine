@@ -1,0 +1,11 @@
+#!/bin/bash
+sudo mkdir /opt/mine-forge/ || exit 1
+sudo chown -R $USER:$USER /opt/mine-forge/
+cd /opt/mine-forge/
+initmine forge
+cd server/
+fancy_message info "Running install. This may take a while"
+java -jar server.jar --installServer 2>&1
+rm server.jar
+for f in *.jar; do mv -i "$f" server.jar; done
+exit
