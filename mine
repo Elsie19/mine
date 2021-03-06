@@ -260,8 +260,18 @@ while test $# -gt 0; do
         mv server.jar fabric-installer.jar
         java -jar /opt/mine-fabric/fabric-installer.jar server
         echo '#!/bin/sh
-        cd $(dirname $0)
-        java -jar -server -Xms1G -Xmx1G fabric-server-launch.jar nogui' > start.sh
+# This script is run by systemd so you can edit anything related to the server startup here without using root and messing up something with systemd
+# makes the script runnable from anywhere on the system
+BINDIR=$(dirname "$(readlink -fn "$0")")
+cd "$BINDIR"
+# INITIAL_MEM is how much memory you want java to start with. You can edit it with G (gigabytes) or m (megabytes)
+INITIAL_MEM="1G"
+# MAX_MEM is the same thing as above except it is the hard limit on how much memory java will run with. If INITIAL_MEM and MAX_MEM are the same it will help with garbage collecting.
+MAX_MEM="1G"
+# Put flags in between the quotes below
+FLAGS=""
+# nogui is at the end because without it will suck all your available ram. The -server flag is to tell java to conserve ram and cpu as much as possible
+java -jar -server -Xms$INITIAL_MEM -Xmx$MAX_MEM $FLAGS fabric-server-launch.jar nogui' > start.sh
         exit
         ;;
       paper)
@@ -287,8 +297,15 @@ while test $# -gt 0; do
       purpur)
         sudo mkdir /opt/mine-purpur/
         sudo chown -R $USER:$USER /opt/mine-purpur/
-        cd /opt/mine/spigot/
+        cd /opt/mine-purpur/
         initmine purpur
+        exit
+        ;;
+     tuinity)
+        sudo mkdir /opt/mine-tuinity/
+        sudo chown -R $USER:$USER /opt/mine-tuinity/
+        cd /opt/mine-tuinity/
+        initmine tuinity
         exit
         ;;
      *)
@@ -308,7 +325,7 @@ while test $# -gt 0; do
       fancy_message info "Wrote to ${GREEN}backups/$FILE.zip${NC}"
       fancy_message info "If you want to rollback this server you would run ${RED}mine -RB $SERVER $FILE${NC}"
       if ask "Do you want to start the server again?" N; then
-          mine -X $SERVER
+        mine -X $SERVER
       fi
       exit
       ;;    
@@ -336,7 +353,7 @@ while test $# -gt 0; do
         sudo systemctl stop $SERVER
         # Finds last backup and puts in /tmp in case of accident
         LAST=$(find /opt/mine-$SERVER/backups -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -f2- -d" ")
-        mv /opt/mine-$SERVER/backups/$LAST /tmp
+        mv /opt/mine-$SERVER/backups/$LAST/ /tmp
         fancy_message info "Put last known backup in ${GREEN}/tmp${NC} in case your cat accidently mashed the keyboard. Your welcome."
         fancy_message info "Removing server"
         sudo rm -rf /opt/mine-$SERVER
@@ -347,18 +364,18 @@ while test $# -gt 0; do
         exit
       fi
       else
-      fancy_message error "$SERVER doesn't exist"
-      exit 1
+        fancy_message error "$SERVER doesn't exist"
+        exit 1
       fi
       ;;
     -L|--log)
       SERVER=$2
       if [[ -n "$SERVER" ]]; then
-      less /opt/mine-$SERVER/server/logs/latest.log
-      exit
+        less /opt/mine-$SERVER/server/logs/latest.log
+        exit
       else
-      fancy_message error "You didn't specify a server"
-      exit 1
+        fancy_message error "You didn't specify a server"
+        exit 1
       fi
       ;;
     -X|--start)

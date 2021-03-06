@@ -28,5 +28,10 @@
       "url": "https://ci.pl3x.net/job/Purpur/lastSuccessfulBuild/artifact/final/purpurclip.jar",
       "version": "1.16.5",
       "description": "Purpur is a fork of Paper and Tuinity with the goal of providing new and interesting configuration options, which allow for creating a unique gameplay experience not seen anywhere else."
+   },
+   "tuinity": {
+      "url": "https://ci.codemc.io/job/Spottedleaf/job/Tuinity/lastSuccessfulBuild/artifact/tuinity-paperclip.jar",
+      "version": "1.16.5",
+      "description": "Fork of Paper aimed at improving server performance at high playercounts."
    }
 }
