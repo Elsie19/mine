@@ -1,4 +1,3 @@
-#!/bin/bash
 sudo mkdir /opt/mine-spigot/
 sudo chown -R $USER:$USER /opt/mine-spigot/
 cd /opt/mine-spigot/

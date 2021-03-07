@@ -1,4 +1,3 @@
-#!/bin/bash
 sudo mkdir /opt/mine-fabric/ || exit 1
 sudo chown -R $USER:$USER /opt/mine-fabric
 cd /opt/mine-fabric/

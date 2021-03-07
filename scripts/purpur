@@ -1,4 +1,3 @@
-#!/bin/bash
 sudo mkdir /opt/mine-purpur/
 sudo chown -R $USER:$USER /opt/mine-purpur/
 cd /opt/mine-purpur/

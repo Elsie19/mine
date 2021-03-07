@@ -1,4 +1,3 @@
-#!/bin/bash
 sudo mkdir /opt/mine-paper/ || exit 1
 sudo chown -R $USER:$USER /opt/mine-paper/
 cd /opt/mine-paper/
