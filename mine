@@ -234,25 +234,25 @@ while test $# -gt 0; do
       # Download
       case $2 in
       vanilla)
-        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/vanilla)
+        source <(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/vanilla)
         ;;
       forge)
-        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/forge)
+        source <(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/forge)
         ;;
       fabric)
-        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/fabric)
+        source <(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/fabric)
         ;;
       paper)
-        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/paper)
+        source <(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/paper)
         ;;
       spigot)
-        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/spigot)
+        source <(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/spigot)
         ;;
       purpur)
-        . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/purpur)
+        source <(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/purpur)
         ;;
      tuinity)
-       . $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/tuinity)
+       source <(curl -s https://raw.githubusercontent.com/Henryws/mine/master/scripts/tuinity)
         ;;
      *)
      fancy_message error "run mine -S to see available servers"
