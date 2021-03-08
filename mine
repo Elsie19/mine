@@ -360,6 +360,21 @@ while test $# -gt 0; do
       sed -i "s/$KEY=.*/$KEY=$VALUE/g" /opt/mine-$SERVER/server/server.properties
       exit
       ;;
+    -DM|--download-mod)
+      MOD=$2
+      SERVER=$3
+      if [[ $SERVER == "forge" ]]; then
+          cd /opt/mine-forge/server || exit 1
+          mkdir -p mods
+          wget --progress=bar:force -O $MOD.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/forge-mods.json | jq -r ."$MOD".url) 2>&1 | progressfilt
+          exit
+      else
+          cd /opt/mine-fabric/server || exit 1
+          mkdir -p mods
+          wget --progress=bar:force -O $MOD.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/fabric-mods.json | jq -r ."$MOD".url) 2>&1 | progressfilt
+          exit
+      fi
+      ;;
      *)
       mine -h
       exit 1
