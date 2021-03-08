@@ -19,13 +19,14 @@ Copy paste `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Henryws/mine
 
 
 ## Commands
-- `mine -D` Will download and install the specified server (run `mine -S` to see all valid servers)
-- `mine -A` Will send you to the specified servers console. Type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit
-- `mine -X` Will start the specified server
-- `mine -XX` Will stop the specified server
-- `mine -B` Will stop and backup the specifed server
-- `mine -RB` Will recover the specified server
+- `mine -D`/`mine --download` Will download and install the specified server (run `mine -S` to see all valid servers)
+- `mine -A`/`mine --attach` Will send you to the specified servers console. Type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit
+- `mine -start` Will start the specified server
+- `mine -stop` Will stop the specified server
+- `mine -B`/`mine --backup` Will stop and backup the specifed server
+- `mine -RB`/`mine --recover-backup` Will recover the specified server
+- `mine -R`/`mine --remove` Will destroy the specifed server
 
 
 ## Example
-I first install mine then run `mine -S` to find valid servers, I decide I want to start a paper server so I would run `mine -D paper` to download and install all the necessary files. Then I would run `mine -X paper` to start it. Then I join the server locally and I realize I'm not op. I would run `mine -A paper` to enter the console and I would type `op yourName` to become op. Then I would type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit the console. But I don't like paper and I want to try a modded server. I stop the server with `mine -XX paper` although the next commmand does that automatically. I would destroy the paper server with `mine -R paper` and when that's done I would install forge with `mine -D forge`. But forge is kind of slow so I want to use [aikars](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft) flags. I would run `cd /opt/mine-forge/server` and edit the file `start.sh` in a text editor. I would copy paste in between the quotations on the line that says FLAGS. Then run `mine -XX` then `mine -X` a few minutes later to restart with the new flags. Remember that you should exclude `-xmx` and `-xms` when your editing flags.
+I first install mine then run `mine -S`/`mine --search` to find valid servers, I decide I want to start a paper server so I would run `mine -D paper` to download and install all the necessary files. Then I would run `mine -start paper` to start it. Then I join the server locally and I realize I'm not op. I would run `mine -A paper` to enter the console and I would type `op yourName` to become op. Then I would type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit the console. But I don't like paper and I want to try a modded server. I stop the server with `mine -stop paper` although the next commmand does that automatically. I would destroy the paper server with `mine -R paper` and when that's done I would install forge with `mine -D forge` and etc etc...
