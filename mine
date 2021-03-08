@@ -371,11 +371,13 @@ while test $# -gt 0; do
       if [[ $SERVER == "forge" ]]; then
           cd /opt/mine-forge/server || exit 1
           mkdir -p mods
+          cd mods
           wget --progress=bar:force -O $MOD.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/forge-mods.json | jq -r ."$MOD".url) 2>&1 | progressfilt
           exit
       else
           cd /opt/mine-fabric/server || exit 1
           mkdir -p mods
+          cd mods
           wget --progress=bar:force -O $MOD.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/fabric-mods.json | jq -r ."$MOD".url) 2>&1 | progressfilt
           exit
       fi
