@@ -228,7 +228,9 @@ while test $# -gt 0; do
       -A   |   Will open the console to the specified server | mine -A spigot
       -start   |   Will start the specified server | mine -start paper
       -stop  |   Will stop the specifed server | mine -stop paper
-      -E   |   Change a value of server.properties easily | mine -E fabric server-port 25567'
+      -E   |   Change a value of server.properties easily | mine -E fabric server-port 25567
+      -DM  |  Will download mod to specified server | mine -DM vampirism forge
+      -SM  |  Will search for mod availability | mine -SM ap fabric'
       exit 0
       ;;
     -D|--download)
@@ -381,6 +383,12 @@ while test $# -gt 0; do
           wget --progress=bar:force -O $MOD.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/fabric-mods.json | jq -r ."$MOD".url) 2>&1 | progressfilt
           exit
       fi
+      ;;
+    -SM|--search-mod)
+      MOD=$2
+      SERVER=$3
+      curl -s https://raw.githubusercontent.com/Henryws/mine/master/$SERVER-mods.json | jq keys | grep "$MOD"
+      exit
       ;;
      *)
       mine -h
