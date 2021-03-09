@@ -230,7 +230,7 @@ while test $# -gt 0; do
       -stop  |   Will stop the specifed server | mine -stop paper
       -E   |   Change a value of server.properties easily | mine -E fabric server-port 25567
       -DM  |  Will download mod to specified server | mine -DM vampirism forge
-      -SM  |  Will search for mod availability | mine -SM ap fabric'
+      -SM  |  Will search for mod availability | mine -SM api fabric'
       exit 0
       ;;
     -D|--download)
