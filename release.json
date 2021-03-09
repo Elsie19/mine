@@ -5,7 +5,7 @@
       "description": "Just a plain server"
    },
    "forge": {
-      "url": "https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.16.5-36.0.42/forge-1.16.5-36.0.42-installer.jar",
+      "url": "https://adfoc.us/serve/sitelinks/?id=271228&url=https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.16.5-36.0.46/forge-1.16.5-36.0.46-installer.jar",
       "version": "1.16.5",
       "description": "Forge is a free, open-source modding API all of your favourite mods use"
    },
