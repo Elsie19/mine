@@ -20,7 +20,7 @@
       "description": "SpigotMC, also known simply as Spigot, is a fork of the popular Bukkit server mod. Spigot is meant to increase performance and efficiency, while maintaining compatibility with Bukkit plugins."
    },
    "paper": {
-      "url": "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/541/downloads/paper-1.16.5-541.jar",
+      "url": "https://papermc.io/api/v1/paper/1.16.5/latest/download",
       "version": "1.16.5",
       "description": "Paper is the next generation of Minecraft server, compatible with Spigot plugins and offering uncompromising performance."
    },
