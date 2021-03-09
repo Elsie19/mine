@@ -274,7 +274,7 @@ while test $# -gt 0; do
       fancy_message info "Wrote to ${GREEN}backups/$FILE.zip${NC}"
       fancy_message info "If you want to rollback this server you would run ${RED}mine -RB $SERVER $FILE${NC}"
       if ask "Do you want to start the server again?" N; then
-        mine -X $SERVER
+        mine -start $SERVER
       fi
       exit
       ;;    
