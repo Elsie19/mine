@@ -10,7 +10,7 @@
       "description": "Forge is a free, open-source modding API all of your favourite mods use"
    },
    "fabric": {
-      "url": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.6.1.51/fabric-installer-0.6.1.51.jar",
+      "url": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.7.2/fabric-installer-0.7.2.jar",
       "version": "1.16.5",
       "description": "Fabric is a lightweight, experimental modding toolchain for Minecraft."
    },
@@ -20,7 +20,7 @@
       "description": "SpigotMC, also known simply as Spigot, is a fork of the popular Bukkit server mod. Spigot is meant to increase performance and efficiency, while maintaining compatibility with Bukkit plugins."
    },
    "paper": {
-      "url": "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/505/downloads/paper-1.16.5-505.jar",
+      "url": "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/541/downloads/paper-1.16.5-541.jar",
       "version": "1.16.5",
       "description": "Paper is the next generation of Minecraft server, compatible with Spigot plugins and offering uncompromising performance."
    },
