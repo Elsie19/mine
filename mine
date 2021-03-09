@@ -226,7 +226,7 @@ while test $# -gt 0; do
       -Ls  |   Will list your current servers | mine -Ls
       -A   |   Will open the console to the specified server | mine -A spigot
       -start   |   Will start the specified server | mine -start paper
-      -stop  |   Will stop the specifed server | mine -stop paper
+      -stop  |   Will stop the specifed server | mine -stop tuinity
       -E   |   Change a value of server.properties easily | mine -E fabric server-port 25567
       -DM  |  Will download mod to specified server | mine -DM vampirism forge
       -SM  |  Will search for mod availability | mine -SM api fabric'
