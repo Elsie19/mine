@@ -131,6 +131,7 @@ java -Xms$INITIAL_MEM -Xmx$MAX_MEM -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:
     whoami=$(whoami)
     sudo wget -q -O /etc/systemd/system/$NAME.service "https://raw.githubusercontent.com/Henryws/mine/master/systemd/$NAME.service"
     sudo sed -i "s/User=/User=$whoami/g" "/etc/systemd/system/$NAME.service"
+    fancy_message info "Run mine -start $NAME to start server"
 }
 function mine-jar() {
     JARNAME=$1
