@@ -20,12 +20,14 @@ Copy paste `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Henryws/mine
 
 ## Commands
 - `mine -D`/`mine --download` Will download and install the specified server (run `mine -S` to see all valid servers)
-- `mine -A`/`mine --attach` Will send you to the specified servers console. Type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit
+- `mine -A`/`mine --attach` Will send you to the specified servers console. Type <kbd>ctrl</kbd>+<kbd>a</kbd>+<kbd>d</kbd> to exit
 - `mine -start` Will start the specified server
 - `mine -stop` Will stop the specified server
 - `mine -B`/`mine --backup` Will stop and backup the specifed server
 - `mine -RB`/`mine --recover-backup` Will recover the specified server
 - `mine -R`/`mine --remove` Will destroy the specifed server
+- `mine -DM`/`mine --download-mod` Will download a mod
+- `mine -SM`/`mine --search-mod` Will search for a mod
 
 
 ## Example
