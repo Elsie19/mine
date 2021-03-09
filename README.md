@@ -13,7 +13,7 @@ Quick start your minecraft server with mine! You can one command install many ty
 
 
 ## Installation
-You will need a server or computer running some form of Linux with systemd. You can check if you are using systemd with the command `pstree -p`
+You will need a server or computer running some form of Linux with systemd. You can check if you are using systemd with the command `pstree -p | grep 'systemd'`
 
 Copy paste `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Henryws/mine/master/install.sh)"` in a terminal and press <kbd>enter</kbd>. If you don't know what I'm talking about look [here](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview) because this is very important to running any server (not just Minecraft)
 
