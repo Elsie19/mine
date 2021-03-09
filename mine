@@ -385,7 +385,7 @@ while test $# -gt 0; do
     -SM|--search-mod)
       MOD=$2
       SERVER=$3
-      curl -s https://raw.githubusercontent.com/Henryws/mine/master/$SERVER-mods.json | jq keys | grep "$MOD"
+      curl -s https://raw.githubusercontent.com/Henryws/mine/master/$SERVER-mods.json | jq -C keys | tr -d '"' | grep "$MOD"
       exit
       ;;
      *)
