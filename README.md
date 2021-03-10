@@ -15,7 +15,7 @@
 <!--    <a href="https://github.com/Henryws/mine/wiki"><strong>Explore the wiki »</strong></a> -->
     <br/>
     <br/>
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://asciinema.org/a/398186">View Demo</a>
     ·
     <a href="https://github.com/Henryws/mine/issues">Report Bug</a>
     ·
