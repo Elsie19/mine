@@ -12,7 +12,7 @@
   <p align="center">
     An easy to use Minecraft wrapper
     <br/>
-    <a href="https://github.com/Henryws/mine/wiki"><strong>Explore the wiki »</strong></a>
+<!--    <a href="https://github.com/Henryws/mine/wiki"><strong>Explore the wiki »</strong></a> -->
     <br/>
     <br/>
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
