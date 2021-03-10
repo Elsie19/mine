@@ -4,5 +4,11 @@
    },
    "jei": {
       "url": "https://media.forgecdn.net/files/3192/904/jei-1.16.4-7.6.1.71.jar"
+   },
+   "quark": {
+      "url": "https://media.forgecdn.net/files/3221/260/Quark-r2.4-308.jar"
+   },
+   "journeymap": {
+      "url": "https://media.forgecdn.net/files/3222/876/journeymap-1.16.5-5.7.1.jar"
    }
 }
