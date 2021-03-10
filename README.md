@@ -1,6 +1,26 @@
 # mine
 <p align="center">
-<a href="https://minecraft.net"><img src="https://i.redd.it/lhyfpzbifpo21.png" width="200" height="200"></a>
+</p>
+<br/>
+<p align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="https://i.redd.it/lhyfpzbifpo21.pn" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">mine</h3>
+
+  <p align="center">
+    An easy to use Minecraft wrapper
+    <br/>
+    <a href="https://github.com/Henryws/mine/wiki"><strong>Explore the wiki »</strong></a>
+    <br/>
+    <br/>
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/Henryws/mine/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Henryws/mine/issues">Request Feature</a>
+  </p>
 </p>
 Quick start your minecraft server with mine! You can one command install many types of servers, backup and rollback servers with ease, easily destroy servers, and much more. Look at Installation to start
 
