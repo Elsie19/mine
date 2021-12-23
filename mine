@@ -1,6 +1,7 @@
 #!/bin/bash
-BOLD=$(tput bold)
-NORMAL=$(tput sgr0)
+set -e
+BOLD="$(tput bold)"
+NORMAL="$(tput sgr0)"
 NC='\033[0m'
 # Curtesy of https://stackoverflow.com/a/28938235/13449010
 # Regular Colors
@@ -74,27 +75,20 @@ On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
 
-progressfilt ()
-{
-    local flag=false c count cr=$'\r' nl=$'\n'
-    while IFS='' read -d '' -rn 1 c
-    do
-        if $flag
-        then
-            printf '%s' "$c"
-        else
-            if [[ $c != $cr && $c != $nl ]]
-            then
-                count=0
-            else
-                ((count++))
-                if ((count > 1))
-                then
-                    flag=true
-                fi
-            fi
+progressfilt () {
+local flag=false c count cr=$'\r' nl=$'\n'
+while IFS='' read -d '' -rn 1 c; do
+    if $flag; then
+        printf '%s' "$c"
+    elif [[ $c != $cr && $c != $nl ]]; then
+        count=0
+    else
+        ((count++))
+        if ((count > 1)); then
+            flag=true
         fi
-    done
+    fi
+done
 }
 
 function initmine() {
@@ -227,9 +221,7 @@ while test $# -gt 0; do
       -A   |   Will open the console to the specified server | mine -A spigot
       -start   |   Will start the specified server | mine -start paper
       -stop  |   Will stop the specifed server | mine -stop tuinity
-      -E   |   Change a value of server.properties easily | mine -E fabric server-port 25567
-      -DM  |  Will download mod to specified server | mine -DM vampirism forge
-      -SM  |  Will search for mod availability | mine -SM api fabric'
+      -E   |   Change a value of server.properties easily | mine -E fabric server-port 25567'
       exit 0
       ;;
     -D|--download)
@@ -364,29 +356,6 @@ while test $# -gt 0; do
       KEY="$3"
       VALUE="$4"
       sed -i "s/$KEY=.*/$KEY=$VALUE/g" /opt/mine-$SERVER/server/server.properties
-      exit
-      ;;
-    -DM|--download-mod)
-      MOD=$2
-      SERVER=$3
-      if [[ $SERVER == "forge" ]]; then
-          cd /opt/mine-forge/server || exit 1
-          mkdir -p mods
-          cd mods
-          wget --progress=bar:force -O $MOD.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/forge-mods.json | jq -r ."$MOD".url) 2>&1 | progressfilt
-          exit
-      else
-          cd /opt/mine-fabric/server || exit 1
-          mkdir -p mods
-          cd mods
-          wget --progress=bar:force -O $MOD.jar $(curl -s https://raw.githubusercontent.com/Henryws/mine/master/fabric-mods.json | jq -r ."$MOD".url) 2>&1 | progressfilt
-          exit
-      fi
-      ;;
-    -SM|--search-mod)
-      MOD=$2
-      SERVER=$3
-      curl -s https://raw.githubusercontent.com/Henryws/mine/master/$SERVER-mods.json | jq -C keys | tr -d '"' | grep "$MOD"
       exit
       ;;
      *)
