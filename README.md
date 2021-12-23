@@ -47,9 +47,7 @@ Copy paste `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Henryws/mine
 - `mine -B`/`mine --backup` Will stop and backup the specifed server
 - `mine -RB`/`mine --recover-backup` Will recover the specified server
 - `mine -R`/`mine --remove` Will destroy the specifed server
-- `mine -DM`/`mine --download-mod` Will download a mod
-- `mine -SM`/`mine --search-mod` Will search for a mod
 
 
 ## Example
-I first install mine then run `mine -S`/`mine --servers` to find valid servers, I decide I want to start a paper server so I would run `mine -D paper` to download and install all the necessary files. Then I would run `mine -start paper` to start it. Then I join the server locally and I realize I'm not op. I would run `mine -A paper` to enter the console and I would type `op yourName` to become op. Then I would type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit the console. But I don't like paper and I want to try a modded server. I stop the server with `mine -stop paper` although the next command does that automatically. I would destroy the paper server with `mine -R paper` and when that's done I would install forge with `mine -D forge`. I want to install a mod, I choose [Vampirism](https://www.curseforge.com/minecraft/mc-mods/vampirism-become-a-vampire). I install it with `mine -DM vampirism forge`.
+I first install mine then run `mine -S`/`mine --servers` to find valid servers, I decide I want to start a paper server so I would run `mine -D paper` to download and install all the necessary files. Then I would run `mine -start paper` to start it. Then I join the server locally and I realize I'm not op. I would run `mine -A paper` to enter the console and I would type `op yourName` to become op. Then I would type <kbd>ctrl</kbd> + <kbd>a</kbd> + <kbd>d</kbd> to exit the console. But I don't like paper and I want to try a modded server. I stop the server with `mine -stop paper` although the next command does that automatically. I would destroy the paper server with `mine -R paper` and when that's done I would install forge with `mine -D forge`.
